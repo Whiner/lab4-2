@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Lab4</string>
+    <string name="importWords">Импортировать словать</string>
+    <string name="exportWords">Экспортировать словарь</string>
+    <string name="refreshArchive">Сбросить архив</string>
+</resources>

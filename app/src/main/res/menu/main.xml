@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/first"
+        android:title="@string/importWords"
+        android:onClick="importWords" />
+    <item
+        android:id="@+id/second"
+        android:title="@string/exportWords"
+        android:onClick="exportWords" />
+    <item
+        android:id="@+id/third"
+        android:title="@string/refreshArchive"
+        android:onClick="refreshArchive" />
+</menu>
