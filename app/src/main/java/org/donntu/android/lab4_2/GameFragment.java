@@ -3,10 +3,12 @@ package org.donntu.android.lab4_2;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,30 +30,43 @@ public class GameFragment extends Fragment {
     private Timer timer = new Timer();
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wordService = new WordService(
-                TranslationType.RUS_TO_ENG,
-                this.getContext()
-        );
-        speechService = new SpeechService(this.getContext());
-        init();
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            wordService = new WordService(
+                    (TranslationType) arguments.getSerializable("type"),
+                    this.getContext()
+            );
+            if (speechService == null) {
+                speechService = new SpeechService(this.getContext());
+            }
+        }
     }
 
-    private void init() {
-        wordService.updateData();
-        FragmentActivity activity = getActivity();
-        if (isAvailableWordsExist() && activity != null) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.game, container, false);
+    }
 
-            activity.setContentView(R.layout.game);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init(view);
+    }
+
+
+    private void init(View view) {
+        wordService.updateData();
+        if (isAvailableWordsExist()) {
             wordService.setViews(
                     new TextView[]{
-                            activity.findViewById(R.id.word1),
-                            activity.findViewById(R.id.word2),
-                            activity.findViewById(R.id.word3),
-                            activity.findViewById(R.id.word4)}
+                            view.findViewById(R.id.word1),
+                            view.findViewById(R.id.word2),
+                            view.findViewById(R.id.word3),
+                            view.findViewById(R.id.word4)}
             );
-            wordService.setMainView(activity.findViewById(R.id.word));
+            wordService.setMainView(view.findViewById(R.id.word));
             nextWord();
 
             setLayoutListener(R.id.word1_layout);
@@ -60,13 +75,13 @@ public class GameFragment extends Fragment {
             setLayoutListener(R.id.word4_layout);
 
 
-            Button playButton = activity.findViewById(R.id.playWord);
+            Button playButton = view.findViewById(R.id.playWord);
             playButton.setOnClickListener(v -> {
-                TextView word = activity.findViewById(R.id.word);
+                TextView word = view.findViewById(R.id.word);
                 listenWord(word.getText().toString());
             });
 
-            Button stopButton = activity.findViewById(R.id.stopButton);
+            Button stopButton = view.findViewById(R.id.stopButton);
             stopButton.setOnClickListener(v -> backToHome());
 
         }
@@ -140,6 +155,6 @@ public class GameFragment extends Fragment {
     }
 
     private void backToHome() {
-        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
+        Navigation.findNavController(getView()).popBackStack();
     }
 }

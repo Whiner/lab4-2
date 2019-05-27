@@ -2,14 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/first"
-        android:title="@string/importWords"
-        android:onClick="importWords" />
+        android:title="@string/importWords" />
     <item
         android:id="@+id/second"
-        android:title="@string/exportWords"
-        android:onClick="exportWords" />
+        android:title="@string/exportWords" />
     <item
         android:id="@+id/third"
-        android:title="@string/refreshArchive"
-        android:onClick="refreshArchive" />
+        android:title="@string/refreshArchive" />
 </menu>

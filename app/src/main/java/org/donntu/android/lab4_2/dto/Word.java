@@ -14,7 +14,7 @@ public class Word {
     private boolean isInArchive;
     private int correctAnswersCount = 0;
 
-    public ContentValues toContentValues(){
+    public ContentValues toContentValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put("russian", russianTranslate);
         contentValues.put("english", englishTranslate);
@@ -39,5 +39,12 @@ public class Word {
 
     public String toFileForm() {
         return "[" + russianTranslate + "]:[" + englishTranslate + "]:[" + isInArchive + "]";
+    }
+
+    @Override
+    public String toString() {
+        return "Русский: " + russianTranslate +
+                "\nАнглийский: " + englishTranslate +
+                "\nВ архиве: " + (isInArchive? "Да" : "Нет");
     }
 }

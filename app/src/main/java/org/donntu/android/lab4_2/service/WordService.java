@@ -31,7 +31,7 @@ public class WordService {
     private Map<TextView, Word> answersVersions = new HashMap<>();
     private TextView rightAnswer;
 
-    Random random = new Random();
+    private Random random = new Random();
 
     private TextView mainView;
 

@@ -66,5 +66,13 @@
             android:text="Поменять местами языки"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/listButton"
+            android:layout_width="300dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="20dp"
+            android:text="Список слов"
+            android:textSize="18sp" />
+
     </LinearLayout>
 </FrameLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/addFragment"
@@ -22,6 +22,10 @@
         <action
             android:id="@+id/action_gameFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="type"
+            app:argType="org.donntu.android.lab4_2.dto.TranslationType"
+            android:defaultValue="RUS_TO_ENG" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -34,5 +38,26 @@
         <action
             android:id="@+id/action_homeFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_wordListFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="org.donntu.android.lab4_2.LoginFragment"
+        android:label="login"
+        tools:layout="@layout/login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="org.donntu.android.lab4_2.WordListFragment"
+        android:label="words_list"
+        tools:layout="@layout/words_list" >
+        <action
+            android:id="@+id/action_wordListFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
